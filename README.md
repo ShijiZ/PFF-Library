@@ -7,7 +7,7 @@ The tutorial for using PFF library can be found [here](https://ambermd.org/tutor
 ## Parameter Files
 | PCL Name                                       | PDB ID   | Description                                | URL Links                                                      |
 |:-----------------------------------------------|:---------|:-------------------------------------------|:---------------------------------------------------------------|
-| Coenzyme A (CoA) Library                       | nan      | nan                                        | nan                                                            |
+| *Coenzyme A (CoA) Library*                                                                                   |
 | CoA                                            | COA      | “apo” coenzyme A                           | [Link](http://rayluolab.org/pff-files-for-coenzyme-a/)         |
 | Acetyl-CoA                                     | ACO      | 2 Carbon Acyl-CoA                          | [Link](http://rayluolab.org/pff-files-for-acetyl-coa/)         |
 | Propionyl-CoA                                  | 1VU      | 3 Carbon Acyl-CoA                          | [Link](http://rayluolab.org/pff-files-for-propionyl-coa/)      |
