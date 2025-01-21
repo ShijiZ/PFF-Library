@@ -8,18 +8,18 @@ The tutorial for using PFF library can be found [here](https://ambermd.org/tutor
 | PCL Name                                       | PDB ID   | Description                                | URL Links                                                      |
 |:-----------------------------------------------|:---------|:-------------------------------------------|:---------------------------------------------------------------|
 | `Coenzyme A (CoA) Library`                                                                                   |
-| CoA                                            | COA      | “apo” coenzyme A                           | [Link](http://rayluolab.org/pff-files-for-coenzyme-a/)         |
-| Acetyl-CoA                                     | ACO      | 2 Carbon Acyl-CoA                          | [Link](http://rayluolab.org/pff-files-for-acetyl-coa/)         |
-| Propionyl-CoA                                  | 1VU      | 3 Carbon Acyl-CoA                          | [Link](http://rayluolab.org/pff-files-for-propionyl-coa/)      |
-| Butyryl-CoA                                    | BCO      | 4 Carbon Acyl-CoA                          | [Link](http://rayluolab.org/pff-files-for-butyryl-coa/)        |
-| Hexanoyl-CoA                                   | HXC      | 6 Carbon Acyl-CoA                          | [Link](http://rayluolab.org/pff-files-for-hexanoyl-coa/)       |
-| Octanoyl-CoA                                   | CO8      | 8 Carbon Acyl-CoA                          | [Link](http://rayluolab.org/pff-files-for-octanoyl-coa/)       |
-| Decanoyl-CoA                                   | MFK      | 10 Carbon Acyl-CoA                         | [Link](http://rayluolab.org/pff-files-for-decanoyl-coa/)       |
-| Dodecanoyl-CoA                                 | DCC      | 12 Carbon Acyl-CoA                         | [Link](http://rayluolab.org/pff-files-for-dodecanoyl-coa/)     |
-| Tetradecanoyl-CoA                              | MYA      | 14 Carbon Acyl-CoA                         | [Link](http://rayluolab.org/pff-files-for-tetradecanoyl-coa/)  |
-| Hexadecanoyl-CoA                               | PKZ      | 16 Carbon Acyl-CoA                         | [Link](http://rayluolab.org/pff-files-for-hexadecanoyl-coa/)   |
-| Malonyl-CoA                                    | MLC      | CoA derivative of malonic acid             | [Link](http://rayluolab.org/pff-files-for-malonyl-coa/)        |
-| Acetoacetyl-CoA                                | CAA      | Precursor of HMG-CoA in mevalonate pathway | [Link](http://rayluolab.org/pff-files-for-acetoacetyl-coa/)    |
+| CoA                                            | COA      | “apo” coenzyme A                           | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/COA)         |
+| Acetyl-CoA                                     | ACO      | 2 Carbon Acyl-CoA                          | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/ACO)         |
+| Propionyl-CoA                                  | 1VU      | 3 Carbon Acyl-CoA                          | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/1VU)      |
+| Butyryl-CoA                                    | BCO      | 4 Carbon Acyl-CoA                          | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/BCO)        |
+| Hexanoyl-CoA                                   | HXC      | 6 Carbon Acyl-CoA                          | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/HXC)       |
+| Octanoyl-CoA                                   | CO8      | 8 Carbon Acyl-CoA                          | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/CO8)       |
+| Decanoyl-CoA                                   | MFK      | 10 Carbon Acyl-CoA                         | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/MFK)       |
+| Dodecanoyl-CoA                                 | DCC      | 12 Carbon Acyl-CoA                         | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/DCC)     |
+| Tetradecanoyl-CoA                              | MYA      | 14 Carbon Acyl-CoA                         | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/MYA)  |
+| Hexadecanoyl-CoA                               | PKZ      | 16 Carbon Acyl-CoA                         | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/PKZ)   |
+| Malonyl-CoA                                    | MLC      | CoA derivative of malonic acid             | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/MLC)        |
+| Acetoacetyl-CoA                                | CAA      | Precursor of HMG-CoA in mevalonate pathway | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/CAA)    |
 | `Phosphopantetheine (Ppant) Library`                                                                         |
 | Ppant                                          | PNS      | “apo” phosphopantetheine                   | [Link](http://rayluolab.org/pff-files-for-phosphopantetheine/) |
 | Acetyl-Ppant                                   | 6VG      | 2 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-acetyl-ppant/)       |
