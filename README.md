@@ -21,25 +21,25 @@ The tutorial for using PFF library can be found [here](https://ambermd.org/tutor
 | Malonyl-CoA                                    | MLC      | CoA derivative of malonic acid             | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/MLC)        |
 | Acetoacetyl-CoA                                | CAA      | Precursor of HMG-CoA in mevalonate pathway | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/CoA-lib/CAA)    |
 | `Phosphopantetheine (Ppant) Library`                                                                         |
-| Ppant                                          | PNS      | “apo” phosphopantetheine                   | [Link](http://rayluolab.org/pff-files-for-phosphopantetheine/) |
-| Acetyl-Ppant                                   | 6VG      | 2 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-acetyl-ppant/)       |
-| Butyryl-Ppant                                  | PSR      | 4 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-butyryl-ppant/)      |
-| Hexanoyl-Ppant                                 | SXH      | 6 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-hexanoyl-ppant/)     |
-| Octanoyl-Ppant                                 | SXO      | 8 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-octanoyl-ppant/)     |
-| Decanoyl-Ppant                                 | PM8      | 10 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-decanoyl-ppant/)     |
-| Dodecanoyl-Ppant                               | 8Q1      | 12 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-dodecanoyl-ppant/)   |
-| Tetradecanoyl-Ppant                            | ZMP      | 14 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-tetradecanoyl-ppant/)|
-| Hexadecanoyl-Ppant                             | G9S      | 16 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-hexadecanoyl-ppant/) |
+| Ppant                                          | PNS      | “apo” phosphopantetheine                   | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/PNS) |
+| Acetyl-Ppant                                   | 6VG      | 2 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/6VG)       |
+| Butyryl-Ppant                                  | PSR      | 4 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/PSR)      |
+| Hexanoyl-Ppant                                 | SXH      | 6 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/SXH)     |
+| Octanoyl-Ppant                                 | SXO      | 8 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/SXO)     |
+| Decanoyl-Ppant                                 | PM8      | 10 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/PM8)     |
+| Dodecanoyl-Ppant                               | 8Q1      | 12 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/8Q1)   |
+| Tetradecanoyl-Ppant                            | ZMP      | 14 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/ZMP)|
+| Hexadecanoyl-Ppant                             | G9S      | 16 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/G9S) |
 | `Phosphopantetheinyl-Serine (Ppant-Ser) Library`                                                             |
-| Ppant                                          | PNS      | “apo” phosphopantetheinyl-serine           | [Link](http://rayluolab.org/pff-files-for-phosphopantetheinyl-serine/) |
-| Acetyl-Ppant                                   | 6VG      | 2 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-acetyl-ppant-ser/)   |
-| Butyryl-Ppant                                  | PSR      | 4 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-butyryl-ppant-ser/)  |
-| Hexanoyl-Ppant                                 | SXH      | 6 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-hexanoyl-ppant-ser/) |
-| Octanoyl-Ppant                                 | SXO      | 8 Carbon Acyl-Ppant                        | [Link](http://rayluolab.org/pff-files-for-octanoyl-ppant-ser/) |
-| Decanoyl-Ppant                                 | PM8      | 10 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-decanoyl-ppant-ser/) |
-| Dodecanoyl-Ppant                               | 8Q1      | 12 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-dodecanoyl-ppant-ser/) |
-| Tetradecanoyl-Ppant                            | ZMP      | 14 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-tetradecanoyl-ppant-ser/) |
-| Hexadecanoyl-Ppant                             | G9S      | 16 Carbon Acyl-Ppant                       | [Link](http://rayluolab.org/pff-files-for-hexadecanoyl-ppant-ser/) |
+| Ppant                                          | PNS      | “apo” phosphopantetheinyl-serine           | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/PNS) |
+| Acetyl-Ppant                                   | 6VG      | 2 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/6VG)   |
+| Butyryl-Ppant                                  | PSR      | 4 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/PSR)  |
+| Hexanoyl-Ppant                                 | SXH      | 6 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/SXH) |
+| Octanoyl-Ppant                                 | SXO      | 8 Carbon Acyl-Ppant                        | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/SXO) |
+| Decanoyl-Ppant                                 | PM8      | 10 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/PM8) |
+| Dodecanoyl-Ppant                               | 8Q1      | 12 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/8Q1) |
+| Tetradecanoyl-Ppant                            | ZMP      | 14 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/ZMP) |
+| Hexadecanoyl-Ppant                             | G9S      | 16 Carbon Acyl-Ppant                       | [Link](https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/G9S) |
 
 ## Citation
 To cite PFF library, see the following publication:
