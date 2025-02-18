@@ -1,8 +1,10 @@
 # PFF-Library
-The repository for `Pantetheine Force Field (PFF)` library containing parameters of various `pantetheine-containing ligands (PCLs)` compatible with Amber force fields. Three charging methods (Gasteiger, AM1-BCC, or RESP) combined with gaff2 and ff14SB parameter sets were employed.
+The repository for `Pantetheine Force Field (PFF)` library containing parameters of various `pantetheine-containing ligands (PCLs)` compatible with [Amber force fields](https://ambermd.org/AmberModels.php). Three charging methods (Gasteiger, AM1-BCC, or RESP) combined with gaff2 and ff14SB parameter sets were employed.
 
 ## Tutorial
-The tutorial for using PFF library can be found [here](https://ambermd.org/tutorials/basic/tutorial20/index.php).
+The tutorial for using PFF library for Phosphopantetheine adenylyltransferase-phosphopantetheine (PPAT-Ppant system) and 3-hydroxy-3-methylglutaryl synthase/acyl carrier protein complex-phosphopantetheinyl serine (HGMS/ACP-Ppant-Ser) can be found on:
+- [Tutorial on Github](http://htmlpreview.github.io/?https://github.com/ShijiZ/PFF-Library/blob/main/tutorial/pff-tutorial.html)
+- [Tutorial on Amber](https://ambermd.org/tutorials/basic/tutorial20/index.php)
 
 ## Parameter Files
 | PCL Name                                       | PDB ID   | Description                                | URL Links                                                      |
