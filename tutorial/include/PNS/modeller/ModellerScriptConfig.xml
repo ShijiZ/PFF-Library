@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modeller9v8>
+	<key></key>
+	<version>2</version>
+	<numModel>5</numModel>
+	<hetAtom>1</hetAtom>
+	<water>1</water>
+	<allHydrogen>0</allHydrogen>
+	<veryFast>0</veryFast>
+	<loopInfo>('', [(37, 43)])</loopInfo>
+</modeller9v8>

@@ -1,0 +1,121 @@
+/* styles.css */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    background-color: #f8f9fa;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    color: #34495e;
+    margin-top: 40px;
+    padding: 8px 0;
+    border-left: 4px solid #3498db;
+    padding-left: 15px;
+}
+
+h3 {
+    color: #4a5568;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+pre {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    background-color: #f4f4f4;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+strong {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+        font-size: 15px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    pre {
+        font-size: 13px;
+        padding: 10px;
+    }
+}
+
+/* Link styling for external resources */
+a[href^="http"] {
+    font-weight: 500;
+    border-bottom: 1px dotted #3498db;
+}
+
+/* Special styling for file references */
+a[href*="include"] {
+    color: #27ae60;
+}
+
+a[href*="include"]:hover {
+    color: #219a52;
+}
+
+/* Section numbering */
+h2::before {
+    content: counter(section) ". ";
+    counter-increment: section;
+    color: #3498db;
+    margin-right: 8px;
+}
+
+body {
+    counter-reset: section;
+}

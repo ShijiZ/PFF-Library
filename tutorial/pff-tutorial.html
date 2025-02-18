@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Using the Pantetheine Force Field (PFF) Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Using the Pantetheine Force Field (PFF) Library</h1>
+
+    <h2>Introduction</h2>
+    <p>The Pantetheine Force Field (PFF) library is an Amber-compatible force field library for various pantetheine-containing ligands (PCLs). The PFF library was parameterized using the <a href="include/1980Gasteiger.pdf">Gasteiger</a>, <a href="include/1999-AM1BCC1.pdf">AM1-BCC</a>, or <a href="include/1993RESP.pdf">RESP</a> charging methods in combination with the <a href="include/2020gaff2.pdf">gaff2</a> and <a href="include/2015_ff14SB.pdf">ff14SB</a> parameter sets. In this tutorial, we are going to demonstrate how to use the parameter files in the PFF library for MD simulations using the <a href="https://ambermd.org/AmberMD.php">AMBER</a> molecular dynamics engines on two protein-PCL systems: Phosphopantetheine adenylyltransferase (PPAT) bound with phosphopantetheine (Ppant); and 3-hydroxy-3-methylglutaryl synthase/acyl carrier protein complex (HGMS/ACP) with phosphopantetheinyl serine (Ppant-Ser) nonstandard amino acid residue. Note that in the <strong>PPAT-Ppant</strong> complex, Ppant is a standalone ligand that binds to the protein non-covalently. While in the <strong>HGMS/ACP-Ppant-Ser</strong> complex, Ppant-Ser is part of the polymer chain of ACP. This difference will lead to slightly different parameterizations for the two types of complexes.</p>
+
+    <p>Note: This tutorial also relies on the interactive visualization, preparation and analysis software <a href="https://www.cgl.ucsf.edu/chimera/">UCSF Chimera</a>, but it is not necessary. All operations involving Chimera could be done with text editors.</p>
+
+    <h2 id="2">Preparing the PPAT-Ppant System Using Ppant Parameter Files</h2>
+
+        <h3 id="2.1">2.1 Preparing the PDB file of the PPAT-Ppant system</h3>
+        <p>In this section, we will show the preparation process for MD simulations of phosphopantetheine adenylyltransferase bound with phosphopantetheine (PPAT-Ppant system) using the PFF parameter files of Ppant. Since Ppant is standalone ligand of the system, this tutorial also applies to the usage of PFF parameter files for CoA PCLs.</p>
+
+        <p>We start with the PDB file <a href="include/PNS/1od6.pdb">1od6.pdb</a>, which contains the PPAT with a Ppant ligand. The PDB file could be downloaded from the <a href="https://www.rcsb.org/structure/1OD6">RCSB website</a>. Besides protein and PCL, the original PDB file also contains solvent molecules including water (HOH) and sulfate ion (SO4). You can use either UCSF Chimera or text editors to remove those unwanted molecules. <a href="include/PNS/1od6_clean.pdb">Here</a> is the cleaned PDB file.</p>
+
+        <p>Another problem with the PDB file is that amino acid residues 38-42 are missed. This is a common problem of the flexible loop regions of X-Ray crystal protein structures. Fortunately, Chimera provides a missing loop modeling feature under <strong>Tools -> Structure Editing -> Model/Refine Loops</strong> by interfacing with <a href="https://salilab.org/modeller/">Modeller</a>, a powerful tool for homology or comparative modeling of protein structures. <a href="include/PNS/1od6_clean_fix.pdb">Here</a> is the generated PDB file with the missing loop fixed.</p>
+
+        <h3 id="2.2">2.2 Creating the topology and coordinate files of the PPAT-Ppant system</h3>
+        <p>AMBER built-in force field parameter sets include those for proteins, DNAs, RNS, carbohydrates, lipids, etc. In order to perform MD simulations on the PPAT-Ppant system, we need extra parameter files for the Ppant ligand. That is why you are using the PFF library! In <a href="https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-lib/PNS">this page</a> you can find the parameter files for Ppant charged with three different charging methods. For example, if you want to use the parameters charged with the AM1-BCC method, you need to download <a href="https://github.com/ShijiZ/PFF-Library/blob/main/Ppant-lib/PNS/AM1BCC/PNS-BCC.lib">PNS-BCC.lib</a> and <a href="https://github.com/ShijiZ/PFF-Library/blob/main/Ppant-lib/PNS/AM1BCC/PNS-BCC.frcmod">PNS-BCC.frcmod</a>.</p>
+
+        <p>Now we have all the files needed to create the topology and coordinate files for <strong>sander</strong> or <strong>pmemd</strong>! We just need to load these files into <strong>LEaP</strong> to create these files. We choose the <strong>ff19SB</strong> force field for the protein, the <strong>gaff2</strong> force field for the non-electrostatic terms of Ppant, and the <strong>OPC</strong> explicit water model. Then, we load the parameter files from the PFF library, and load the PDB file prepared in <a href="#2.1">section 2.1</a>. The molecular system is solvated in an octahedral box of OPC water molecules with thickness extending 8 Å from the protein surface, and is neutralized by adding or Cl- counter ions. Finally, we save the topology and coordinate files, as well as a PDB file for visual checking. This is shown in the script below, which we will save to <a href="include/PNS/tleap/tleap_1od6.in">tleap_1od6.in</a>:</p>
+
+        <pre>source leaprc.protein.ff19SB
+source leaprc.gaff2
+source leaprc.water.opc
+
+loadamberparams PNS-BCC.frcmod
+loadoff PNS-BCC.lib
+
+mol = loadpdb 1od6_clean_fix.pdb
+
+solvateoct mol OPCBOX 8.0
+addionsrand mol Cl- 0
+
+saveamberparm mol 1od6-bcc.prmtop 1od6-bcc.inpcrd
+savepdb mol 1od6-bcc.pdb
+
+quit
+</pre>
+
+        <p>We can then run tleap with the following command:</p>
+
+        <pre>tleap -f tleap_1od6.in</pre>
+
+        <p>After this step, you should have your finished topology and coordinate files, and you are ready to run simulations! You can download the <a href="include/PNS/tleap/1od6-bcc.prmtop">1od6-bcc.prmtop</a>, <a href="include/PNS/tleap/1od6-bcc.inpcrd">1od6-bcc.inpcrd</a> and <a href="include/PNS/tleap/1od6-bcc.pdb">1od6-bcc.pdb</a> we created to compare with your own.</p>
+
+    <h2 id="3">Preparing the HGMS/ACP-Ppant-Ser System Using Ppant-Ser Parameter Files</h2>
+
+        <h3>3.1. Preparing the PDB file of the HGMS/ACP-Ppant-Ser system</h3>
+        <p>In this section, we focus on the preparation of PDB files of HMG synthase (HGMS) in complex with acyl carrier protein (ACP) using the PFF parameter files of Ppant-Ser. Different from the PPAT-Ppant system where the Ppant ligand is standalone in the complex, the Ppant ligand in this case is covalently linked to a conserved serine of ACP, so there are additional complications involved with preparing the files.</p>
+
+        <p>We start with the PDB file <a href="include/PPS/5kp7.pdb">5kp7.pdb</a>, which contains the structure of HGMS/ACP complex. Chain B is the ACP, where Ppant 100 is covalently linked to serine 39. The PDB file could be downloaded from the <a href="https://www.rcsb.org/structure/5KP7">RCSB website</a>. Similar to <a href="#2.1">section 2.1</a>, we need to remove solvent molecules including water (HOH) and sulfate ion (SO4), and fix the missing loop using <a href="https://salilab.org/modeller/">Modeller</a>. <a href="include/PPS/5kp7_clean_fix.pdb">Here</a> is the cleaned and fixed PDB file, in which serine 39 and Ppant 100 in the original PDB file has been renumbered as serine 457 (SER 457) and Ppant (PNS 498) during the loop modeling process.</p>
+
+        <p>Note that in the generated PDB file, SER 457 and PNS 498 are two independent residues. However, the Ppant-Ser parameter files in the PFF library treat the covalently linked Ppant and serine amino acid as a single residue, named as PNS. Therefore, an important step is to “stick” SER 457 and PNS 498 together into a new residue. This step has to be done manually. First, we cut and copy the coordinate information of PNS 498 right below those of SER 457. Second, we rename both SER 457 and PNS 498 to PNS 457. Now, these two separate residues have become a single residue named as PNS. <a href="include/PPS/5kp7_clean_fix_modify.pdb">Here</a> is the modified PDB file. You may find the atoms numbers are out of order now. Don’t worry, tleap will fix this problem automatically in the next section.</p>
+
+        <h3>3.2 Creating the topology and coordinate files of the HGMS/ACP-Ppant-Ser system</h3>
+        <p>Now we are ready to create the topology and coordinate files for subsequent MD simulations. Like in <a href="#2.2">section 2.2</a>, the parameter files for Ppant-Ser charged with three different charging methods could be found in <a href="https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/PNS">this page</a>. Note that there are two .frcmod files associated with each charging method, with names end with .frcmod1 and .frcmod2 respectively. This is due to the fact that non-electrostatic parameters of Ppant-Ser were first derived from the ff14SB force field (.frcmod1 file) then from the gaff2 force field (.frcmod2 file), following <a href="https://ambermd.org/tutorials/basic/tutorial5/index.php">this tutorial</a> of preparing parameter files for modified amino acid residues. For example, if you want to use the parameters charged with the AM1-BCC method, you need to download <a href="https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/PNS/AM1BCC/S-PNS-BCC.lib">S-PNS-BCC.lib</a>, <a href="https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/PNS/AM1BCC/S-PNS-BCC.frcmod1">S-PNS-BCC.frcmod1</a> and <a href="https://github.com/ShijiZ/PFF-Library/tree/main/Ppant-Ser-lib/PNS/AM1BCC/S-PNS-BCC.frcmod2">S-PNS-BCC.frcmod2</a>.</p>
+
+        <p>Now we have all the files needed to create the topology and coordinate files for <strong>sander</strong> or <strong>pmemd</strong>! We just need to load these files into <strong>LEaP</strong> to create these files. We choose the <strong>ff19SB</strong> force field for the protein, the <strong>gaff2</strong> force field for the non-electrostatic terms of Ppant-Ser, and the <strong>OPC</strong> explicit water model. (Although Ppant-Ser in the PFF library was parameterized using ff14SB force field, the parameters for Ppant-Ser are compatible with the ff19SB force field.) While loading the parameter files from the PFF library, it is very important that we load <strong>S-PNS-BCC.frcmod2</strong> file first, followed by <strong>S-PNS-BCC.frcmod1</strong> to make sure that all the gaff2 parameters are overwritten by available ff14SB parameters. The molecular system is solvated in an octahedral box of OPC water molecules with thickness extending 8 Å from the protein surface, and is neutralized by adding or Na+ counter ions. Finally, we save the topology and coordinate files, as well as a PDB file for visual checking. This is shown in the script below, which we will save to <a href="include/PPS/tleap/tleap_5kp7.in">tleap_5kp7.in</a>:</p>
+
+        <pre>source leaprc.protein.ff19SB
+source leaprc.gaff2
+source leaprc.water.opc
+
+loadamberparams PNS.frcmod2
+loadamberparams PNS.frcmod1
+loadoff PNS.lib
+
+mol = loadpdb ../5kp7_clean_fix_modify.pdb
+
+solvateoct mol OPCBOX 8.0
+addionsrand mol Na+ 0
+
+saveamberparm mol 5kp7-bcc.prmtop 5kp7-bcc.inpcrd
+savepdb mol 5kp7-bcc.pdb
+
+quit       
+</pre>
+        <p>We can then run tleap with the following command:</p>
+
+        <pre>tleap -f tleap_5kp7.in</pre>
+
+        <p>After this step, you should have your finished topology and coordinate files, and you are ready to run simulations! You can download the <a href="include/PPS/tleap/5kp7-bcc.prmtop">5kp7-bcc.prmtop</a>, <a href="include/PPS/tleap/5kp7-bcc.inpcrd">5kp7-bcc.inpcrd</a> and <a href="include/PPS/tleap/5kp7-bcc.pdb">5kp7-bcc.pdb</a> we created to compare with your own.</p>
+
+    <h2>MD Simulations</h2>
+    <p>In this section we provide a sample workflow for MD simulations on either the PPAT-Ppant system prepared in <a href="#2">section 2</a>, or the HGMS/ACP-Ppant-Ser system prepared in <a href="#3">section 3</a>. In your own project, you are of course free to choose different minimization, heating, and equilibration routine than what we use here.</p>
+
+        <h3>4.1 Minimization</h3>
+        Following <a href="https://ambermd.org/tutorials/basic/tutorial1/section5.php">this tutorial</a>, we use a two-stage minimization. In the first stage we will keep the protein-PCL system fixed and just optimize the positions of the water and ions. Then in the second stage we will minimize the entire system. Below are the input files of the two stages:
+
+        <a href="include/MD/min1.in">min1.in</a>:
+
+<pre>initial minimization solvent + ions
+ &cntrl
+  imin   = 1,
+  maxcyc = 1000,
+  ncyc   = 500,
+  ntb    = 1,
+  ntr    = 1,
+  cut    = 10.0
+ /
+Hold PPAT-Ppant system fixed
+500.0
+RES 1 161 
+END
+END</pre>
+
+        <p>Note: Change the residue numbers to 1-497 for HGMS/ACP-Ppant-Ser.</p>
+
+        <a href="include/MD/min2.in">min2.in</a>:
+
+<pre>minimization of the whole system
+ &cntrl
+  imin   = 1,
+  maxcyc = 2500,
+  ncyc   = 1000,
+  ntb    = 1,
+  ntr    = 0,
+  cut    = 10.0
+ /</pre>
+
+        <p>Run the following two commands in sequence to perform the two-stage minimizations:</p>
+
+<pre>pmemd -O -i min1.in -p *.prmtop -c *.inpcrd -o min1.out -r min1.rst -ref *.inpcrd
+pmemd -O -i min2.in -p *.prmtop -c min1.rst -o min2.out -r min2.rst</pre>
+
+        <p>Note that the CPU program <strong>pmemd</strong> instead of the GPU program is used for minimization, for the sake of <a href="https://ambermd.org/GPULogistics.php#Accuracy">accuracy consideration</a>. You should visualize the resulting structure (min2.rst) to make sure that nothing obviously bad happened, as well as the output file to make sure that everything looks OK (e.g., that the structure remained intact and that the total energy and maximum gradient steadily decreased during the minimization).</p>
+
+        <h3>4.2 Heating, Equilibration and Production</h3>
+        <p>Next, we first run 200ps of heating that increase the temperature from 0 K to 300 K. Then the systems are equilibrated for 100 ns under constant pressure and temperature (NPT) to adjust the system density; followed by 100 ns production simulations under constant volume and temperature (NVT) conditions. Below are the input files of heating, equilibration, and production stages:</p>
+
+        <a href="include/MD/heat.in">heat.in</a>:
+
+<pre>200ps heating with restraint on protein-PCL
+ &cntrl
+  imin   = 0,
+  irest  = 0,
+  ntx    = 1,
+  ntb    = 1,
+  cut    = 10.0,
+  ntr    = 1,
+  ntc    = 2,
+  ntf    = 2,
+  tempi  = 0.0,
+  temp0  = 300.0,
+  ntt    = 3,
+  gamma_ln = 1.0,
+  nstlim = 100000, dt = 0.002,
+  ntpr = 1000, ntwx = 1000, ntwr = 10000
+ /
+Keep protein-PCL fixed with weak restraints
+10.0
+RES 1 161
+END
+END</pre>
+
+        <p>Note: Change the residue numbers to 1-497 for HGMS/ACP-Ppant-Ser.</p>
+
+        <a href="include/MD/equil.in">equil.in</a>:
+
+<pre>100ns equilibration MD (NPT)
+ &cntrl
+  imin = 0, irest = 1, ntx = 7,
+  ntb = 2, pres0 = 1.0, ntp = 1,
+  taup = 2.0,
+  cut = 10.0, ntr = 0,
+  ntc = 2, ntf = 2,
+  tempi = 300.0, temp0 = 300.0,
+  ntt = 3, gamma_ln = 1.0,
+  nstlim = 50000000, dt = 0.002,
+  ntpr = 100000, ntwx = 100000, ntwr = 1000000
+ /</pre>
+
+        <a href="include/MD/prod.in">prod.in</a>:
+
+<pre>100ns Production MD (NVT)
+ &cntrl
+  imin = 0, irest = 1, ntx = 7,
+  ntb = 1, ntp = 0,
+  cut = 10.0, ntr = 0,
+  ntc = 2, ntf = 2,
+  tempi = 300.0, temp0 = 300.0,
+  ntt = 3, gamma_ln = 1.0,
+  nstlim = 50000000, dt = 0.002,
+  ntpr = 100000, ntwx = 100000, ntwr = 100000
+ /</pre>
+
+        <p>Run the following three commands in sequence to perform heating, equilibration, and production:</p>
+
+<pre>pmemd.cuda_SPFP -O -i heat.in -p *.prmtop -c min2.rst -ref min2.rst -o heat.out -r heat.rst -x heat.nc
+pmemd.cuda_SPFP -O -i equil.in -p *.prmtop -c heat.rst -o equil.out -r equil.rst -x equil.nc
+pmemd.cuda_SPFP -O -i prod.in -p *.prmtop -c equil.rst -o prod.out -r prod.rst -x prod.nc</pre>
+
+        <p>Note we use <strong>pmemd.cuda_SPFP</strong> to run our simulation, which finishes much faster than the CPU program <strong>pmemd</strong>. And as always, check the resulting structure and trajectory with your favorite visualization tool to make sure nothing obviously bad happened.</p>
+
+        <p>Copyright Shiji Zhao, 2022</p>
+
+
